@@ -1,0 +1,61 @@
+<div class='grid-x grid-padding-x text-center'>
+  <div class='cell small-0 medium-2'>
+  </div>
+
+  <div class='cell small-12 medium-8'>
+    <h1 class='bree'>The Percolation Threshold</h1>
+    <p class='text-justify'>
+      From Wikipedia: <a href='https://en.wikipedia.org/wiki/Percolation_threshold' target='_blank'>The percolation threshold</a> is a mathematical concept in percolation theory that describes the formation of long-range connectivity in random systems. Below the threshold a giant connected component does not exist; while above it, there exists a giant component of the order of system size. In engineering and coffee making, percolation represents the flow of fluids through porous media, but in the mathematics and physics worlds it generally refers to simplified lattice models of random systems or networks (graphs), and the nature of the connectivity in them. The percolation threshold is the critical value of the occupation probability <i>p</i>, or more generally a critical surface for a group of parameters <i>p1, p2, ...,</i> such that infinite connectivity (percolation) first occurs.
+      <br><br>
+      Because determining an exact mathematical expression for the percolation threshold remains an open problem, we can instead find an aproximate value of <i>p</i> for a 2-dimensional square by running a <a href='https://en.wikipedia.org/wiki/Monte_Carlo_method' target='_blank'>Monte Carlo simulation</a>:
+    </p>
+
+    <div class='simulation'>
+      <h3 class='bree'>Percolation Simulation</h3>
+      <h4>
+        <span class='label'>Simulations Run: <b id='count'><%= Simulation.count %></b></span>
+        <span class='label'>Average <i>p</i>: <b id='p'><%= Simulation.average('p').round(4) %></b></span>
+      </h4>
+      <div class='grid-x grid-padding-x' style='margin-top:40px;'>
+        <div class='cell small-12 medium-4'>
+          <form action='#'>
+            <p>
+              <label>Grid Size (<i>n x n</i>)</label>
+              <input type='text' id='n' value='10' oninput='init_simulation();' style='width:135px;margin:0 auto;'>
+            </p>
+            <p>
+              <label>Simulation Speed</label>
+              <input type='range' id='speed' min='0' max='600' value='300'>
+            </p>
+            <p>
+              <a href='#' id='start' class='button start' onclick='start_simulation(event);'><i class='fa fa-play'></i></a>
+              <a href='#' id='pause' class='button pause' onclick='toggle_simulation(event)' style='font-weight:bold'><i class='fa fa-pause'></i></a>
+            </p>
+          </form>
+
+          <div class='info'>
+            <span id='info-n'>&nbsp;</span><br>
+            <span id='info-o'>&nbsp;</span><br>
+            <span id='info-p'>&nbsp;</span>
+          </div>
+        </div>
+
+        <div class='cell small-12 medium-8 text-center'>
+          <table id='grid' style='margin:0 auto;'>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='cell small-0 medium-2'>
+  </div>
+</div>
+
+<div class='grid grid-padding-x' style='margin-top:40px;'>
+  <div class='cell small-12 text-center'>
+    <small>
+      © 2019 Caleb Matthiesen - <a href='https://github.com/calebkm/percolation' target='_blank'>Code on Github</a>
+    </small>
+  </div>
+</div>

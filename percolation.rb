@@ -1,0 +1,5 @@
+require 'sinatra'
+require 'sinatra/activerecord'
+require './config/environments'
+require './config/models'
+require './config/routes'
