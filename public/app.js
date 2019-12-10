@@ -1,12 +1,3 @@
-function init_simulation() {
-  pause = false;
-
-  set_n();
-  init_grid();
-  init_sites();
-  display_info(true);
-}
-
 // Create the DOM representation of our 2-d grid.
 // This is tabular data, so, what the heck,
 // let's use a table.
@@ -52,6 +43,15 @@ function start_simulation(e) {
 
   toggle_btn('start', 'fa-undo', 'fa-start');
   toggle_btn('pause', 'fa-pause', 'fa-play');
+}
+
+function init_simulation() {
+  pause = false;
+
+  set_n();
+  init_grid();
+  init_sites();
+  display_info(true);
 }
 
 function toggle_simulation(e) {
