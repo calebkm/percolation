@@ -96,7 +96,6 @@ function open_random_site() {
   set_site(index, 'open');
 }
 
-
 // Loop through all `open` sites and see if they're actually
 // `full`. If we do find a full site, we then restart
 // the loop, making sure we re-check every `open` site.
@@ -149,9 +148,9 @@ function neighbor_is_full(index) {
   return Object.values(neighbors(index)).includes(state('full'));
 }
 
+// Because we only ever have to check a total of
+// four neighbors, this check is quick.
 function neighbors(index) {
-  // Because we only ever have to check a total of 4
-  // neighbors, this check is quick.
   var top = index - n;
   var bottom = index + n;
   var left = (index % n != 0) && index - 1
