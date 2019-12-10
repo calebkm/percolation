@@ -1,5 +1,7 @@
-#### The Percolation Threshold
+## The Percolation Threshold
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Percolation_threshold): The percolation threshold is a mathematical concept in percolation theory that describes the formation of long-range connectivity in random systems. Below the threshold a giant connected component does not exist; while above it, there exists a giant component of the order of system size. In engineering and coffee making, percolation represents the flow of fluids through porous media, but in the mathematics and physics worlds it generally refers to simplified lattice models of random systems or networks (graphs), and the nature of the connectivity in them. The percolation threshold is the critical value of the occupation probability p, or more generally a critical surface for a group of parameters p1, p2, ..., such that infinite connectivity (percolation) first occurs.
 
 Because determining an exact mathematical expression for the percolation threshold remains an open problem, we can instead find an aproximate value of p for a 2-dimensional square by running a [Monte Carlo simulation](https://en.wikipedia.org/wiki/Monte_Carlo_method).
+
+[Check out the working demo deployed on Heroku.](https://percolation-simulation.herokuapp.com)
