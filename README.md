@@ -4,4 +4,4 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Percolation_threshold): The perco
 
 Because determining an exact mathematical expression for the percolation threshold remains an open problem, we can instead find an aproximate value of p for a 2-dimensional square by running a [Monte Carlo simulation](https://en.wikipedia.org/wiki/Monte_Carlo_method).
 
-[Check out the working demo deployed on Heroku.](https://percolation-simulation.herokuapp.com)
+[Check out the working demo deployed on Heroku.](https://percolation-threshold.herokuapp.com)
