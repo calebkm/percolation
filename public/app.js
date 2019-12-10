@@ -46,7 +46,7 @@ function start_simulation(e) {
 }
 
 function init_simulation() {
-  pause = false;
+  paused = false;
 
   set_n();
   init_grid();
@@ -58,12 +58,12 @@ function toggle_simulation(e) {
   e.preventDefault();
 
   if (is_playing()) {
-    if (pause) {
-      pause = false;
+    if (paused) {
+      paused = false;
       run_simulation();
       toggle_btn('pause', 'fa-pause', 'fa-play');
     } else {
-      pause = true;
+      paused = true;
       toggle_btn('pause', 'fa-play', 'fa-pause');
     }
   }
@@ -73,7 +73,7 @@ function toggle_simulation(e) {
 // Otherwise continue looping, randomly opening up
 // a site and checking wheather we percolate.
 function run_simulation() {
-  if (pause) return true;
+  if (paused) return true;
   if (percolates()) return save_data();
 
   open_random_site();
