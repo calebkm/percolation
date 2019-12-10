@@ -60,6 +60,10 @@ table {
   background-color: #7fb6d9;
 }
 
+.button i {
+  width: 12px;
+}
+
 .label {
   font-size: 1.2rem;
   background-color: #7fb6d9;

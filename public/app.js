@@ -7,6 +7,9 @@ function init_simulation() {
   display_info(true);
 }
 
+// Create the DOM representation of our 2-d grid.
+// This is tabular data, so, what the heck,
+// let's use a table.
 function init_grid() {
   var grid = clear_grid();
 
@@ -30,9 +33,15 @@ function clear_grid() {
   return grid;
 }
 
+// Setup the array representing each site of our
+// 2-d n x n grid. Sites can be in one of 3 states:
+//    (0) closed
+//    (1) open
+//    (2) full
+// All sites are initialized in the `closed` state.
 function init_sites() {
   sites = new Array(n * n);
-  for (var i = 0; i < n * n; i++) sites[i] = 0;
+  for (var i = 0; i < n * n; i++) sites[i] = state('closed');
 }
 
 function start_simulation(e) {
@@ -41,23 +50,28 @@ function start_simulation(e) {
   init_simulation();
   run_simulation();
 
-  btn('start', 'fa-undo', 'fa-start');
-  btn('pause', 'fa-pause', 'fa-play');
+  toggle_btn('start', 'fa-undo', 'fa-start');
+  toggle_btn('pause', 'fa-pause', 'fa-play');
 }
 
 function toggle_simulation(e) {
   e.preventDefault();
 
-  if (pause) {
-    pause = false;
-    run_simulation();
-    btn('pause', 'fa-pause', 'fa-play');
-  } else {
-    pause = true;
-    btn('pause', 'fa-play', 'fa-pause');
+  if (is_playing()) {
+    if (pause) {
+      pause = false;
+      run_simulation();
+      toggle_btn('pause', 'fa-pause', 'fa-play');
+    } else {
+      pause = true;
+      toggle_btn('pause', 'fa-play', 'fa-pause');
+    }
   }
 }
 
+// If the system percolastes we're done.
+// Otherwise continue looping, randomly opening up
+// a site and checking wheather we percolate.
 function run_simulation() {
   if (pause) return true;
   if (percolates()) return save_data();
@@ -82,6 +96,10 @@ function open_random_site() {
   set_site(index, 'open');
 }
 
+
+// Loop through all `open` sites and see if they're actually
+// `full`. If we do find a full site, we then restart
+// the loop, making sure we re-check every `open` site.
 function set_full_sites() {
   var open = sites_that_are('open');
 
@@ -103,12 +121,22 @@ function set_site(index, name) {
   site.classList.add(name);
 }
 
+// Does the system percolate?
+// If any site from the bottom row is `full` 
+// then we know there's a connected component
+// all the way to the top of the grid.
+//
+// The bottom row will -at max- have `n` sites to check.
 function percolates() {
   for (var i = (n * n) - n; i < n * n; i++) {
     if (sites[i] == state('full')) return true;
   }
 }
 
+// Sites are `full` when:
+//  a) They are on the top row of the grid,
+//               OR
+//  b) they're touching a neighbor that is `full`. 
 function site_is_full(index) {
   if (site_is_top(index) || neighbor_is_full(index)) return true;
 }
@@ -122,6 +150,8 @@ function neighbor_is_full(index) {
 }
 
 function neighbors(index) {
+  // Because we only ever have to check a total of 4
+  // neighbors, this check is quick.
   var top = index - n;
   var bottom = index + n;
   var left = (index % n != 0) && index - 1
@@ -166,15 +196,15 @@ function p() {
 function display_info(reset) {
   el('info-n').innerHTML = reset ? '' : '<i>n</i> = ' + n;
   el('info-o').innerHTML = reset ? '' : '<i>o</i> = ' + o();
-  el('info-p').innerHTML = reset ? '' : '<i>p</i> = ' + better_to_fixed(p());
+  el('info-p').innerHTML = reset ? '' : '<i>p</i> = ' + better_toFixed(p());
 }
 
 function save_data() {
   post_data();
-  update_count();
-  update_p();
+  upate_simulation_count();
+  update_average_p();
 
-  btn('start', 'fa-start', 'fa-undo');
+  toggle_btn('start', 'fa-start', 'fa-undo');
 }
 
 function post_data() {
@@ -185,13 +215,13 @@ function post_data() {
   xhr.send(null);
 }
 
-function update_count() {
+function upate_simulation_count() {
   var count = el('count');
 
   count.innerHTML = parseInt(count.innerHTML) + 1;
 }
 
-function update_p() {
+function update_average_p() {
   el('p').innerHTML = calculate_average_p();
 }
 
@@ -200,10 +230,10 @@ function calculate_average_p() {
   var count = parseInt(el('count').innerHTML);
   var new_p = ((average_p * count) + (p())) / (count + 1);
 
-  return better_to_fixed(new_p);
+  return better_toFixed(new_p);
 }
 
-function better_to_fixed(i) {
+function better_toFixed(i) {
   return (Math.round(i * 10000 ) / 10000).toFixed(4);
 }
 
@@ -215,11 +245,20 @@ function els(klass) {
   return document.getElementsByClassName(klass);
 }
 
-function btn(id, add, remove) {
-  var i = el(id).children[0];
+function toggle_btn(id, add, remove) {
+  var i = el(id).children[0]; // grab inner <i>
 
   i.classList.add(add);
   i.classList.remove(remove);
+}
+
+function is_playing() {
+  return el('start').
+    children[0].
+    classList.
+    value.
+    split(' ').
+    includes('fa-undo');
 }
 
 document.addEventListener('DOMContentLoaded', function(event) {
