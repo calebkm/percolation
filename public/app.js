@@ -12,9 +12,37 @@ function init_grid() {
       var td = document.createElement('td');
       td.className = 'site';
       td.innerHTML = (i * n) + j;
+      td.style.height = set_height();
+      td.style.minHeight = height;
+      td.style.maxHeight = height;
+      td.style.width = height;
+      td.style.minWidth = height;
+      td.style.maxWidth = height;
+      td.style.fontSize = set_fontSize();
       tr.appendChild(td);
     }
   }
+}
+
+function set_height() {
+  var max = 40;
+  var min = 3;
+
+  height = Math.round(550 / n);
+  height = height > max ? max : height < min ? min : height;
+  height = height + 'px';
+
+  return height;
+}
+
+function set_fontSize() {
+  var max = .8;
+  var min = .3;
+
+  var size = parseInt(height) / 50;
+  size = size > max ? max : size < min ? 0 : size;
+
+  return size + 'rem';
 }
 
 function clear_grid() {

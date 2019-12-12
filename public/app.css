@@ -6,16 +6,7 @@ body {
 
 table {
   width: auto;
-}
-
-.bree {
-  font-family: 'Bree Serif', serif;
-}
-
-.simulation {
-  margin-top: 40px;
-  background-color: #e0eef6;
-  padding: 10px 20px 40px 20px;
+  table-layout: fixed;
 }
 
 .site {
@@ -28,6 +19,17 @@ table {
   margin-right: 2px;
   text-align: center;
   font-size: .7rem;
+  overflow: hidden;
+}
+
+.bree {
+  font-family: 'Bree Serif', serif;
+}
+
+.simulation {
+  margin-top: 40px;
+  background-color: #e0eef6;
+  padding: 10px 20px 40px 20px;
 }
 
 .site.open {
