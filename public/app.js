@@ -209,7 +209,11 @@ function sites_that_are(name) {
 }
 
 function set_n() {
+  var min = 2;
+  var max = 300; // The DOM is slow. Even 300 is a stretch.
+
   n = parseInt(el('n').value) || 10;
+  n = n > max ? max : n < min ? min : n;
 }
 
 function o() {

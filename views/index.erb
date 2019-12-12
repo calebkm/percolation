@@ -7,7 +7,7 @@
     <p class='text-justify'>
       From Wikipedia: <a href='https://en.wikipedia.org/wiki/Percolation_threshold' target='_blank'>The percolation threshold</a> is a mathematical concept in percolation theory that describes the formation of long-range connectivity in random systems. Below the threshold a giant connected component does not exist; while above it, there exists a giant component of the order of system size. In engineering and coffee making, percolation represents the flow of fluids through porous media, but in the mathematics and physics worlds it generally refers to simplified lattice models of random systems or networks (graphs), and the nature of the connectivity in them. The percolation threshold is the critical value of the occupation probability <i>p</i>, or more generally a critical surface for a group of parameters <i>p1, p2, ...,</i> such that infinite connectivity (percolation) first occurs.
       <br><br>
-      Because determining an exact mathematical expression for the percolation threshold remains an open problem, we can instead find an aproximate value of <i>p</i> for a 2-dimensional square by running a <a href='https://en.wikipedia.org/wiki/Monte_Carlo_method' target='_blank'>Monte Carlo simulation</a>:
+      Because determining an exact mathematical expression for the percolation threshold remains an open problem, we can instead find an aproximate value of <i>p</i> for a 2-dimensional square by running the <a href='https://en.wikipedia.org/wiki/Monte_Carlo_method' target='_blank'>Monte Carlo simulation</a> below.
     </p>
 
     <div class='simulation'>
@@ -48,6 +48,16 @@
     </div>
   </div>
 
+  <div class='cell small-0 medium-2'>
+  </div>
+</div>
+
+<div class='grid-x grid-padding-x' style='margin-top:20px;'>
+  <div class='cell small-0 medium-2'>
+  </div>
+  <div class='cell small-12 medium-8'>
+    <small><b>NOTE:</b> Manipulating the DOM is slow. This demo is <b>not</b> optimized for large values of <i>n</i>. Even the max <i>n</i> of 300 runs <i>very slow</i>. This simulation was fun to build and is not meant for actual scientific discovery. Running a more precise simulation with thousands of sites -and no visualization- would provide a much more accurate calculation of <i>p</i>. But I'll leave that as an exercise for someone else.
+  </div>
   <div class='cell small-0 medium-2'>
   </div>
 </div>
